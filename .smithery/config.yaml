@@ -1,0 +1,62 @@
+# Smithery MCP Server Configuration
+# https://smithery.ai/docs/mcp-servers
+
+name: polydev
+displayName: Polydev - Multi-Model AI Perspectives
+description: |
+  Query GPT 5.2, Claude Opus 4.5, Gemini 3, and Grok 4.1 simultaneously.
+  Get diverse AI perspectives when debugging, making architecture decisions, or reviewing code.
+  Achieved 74.6% on SWE-bench Verified at 62% lower cost than Claude Opus.
+
+version: 1.8.61
+author: Polydev AI
+license: MIT
+homepage: https://polydev.ai
+repository: https://github.com/polydev-ai/perspectives-mcp
+
+installation:
+  npm:
+    package: polydev-ai
+    command: npx
+    args:
+      - -y
+      - polydev-ai@latest
+
+environment:
+  POLYDEV_USER_TOKEN:
+    description: Your Polydev authentication token
+    required: true
+    link: https://polydev.ai/dashboard/mcp-tokens
+
+capabilities:
+  tools: true
+  resources: false
+  prompts: false
+
+tools:
+  - name: get_perspectives
+    description: Query multiple AI models simultaneously and return diverse perspectives
+  - name: get_cli_status
+    description: Check status of local CLI tools
+  - name: force_cli_detection
+    description: Force re-detection of installed CLI tools
+  - name: send_cli_prompt
+    description: Send prompts to local CLIs with fallback
+
+tags:
+  - ai
+  - multi-model
+  - debugging
+  - code-review
+  - gpt
+  - claude
+  - gemini
+  - grok
+
+pricing:
+  free:
+    messages: 1000
+    price: 0
+  pro:
+    messages: 10000
+    price: 19

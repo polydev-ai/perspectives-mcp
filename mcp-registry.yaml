@@ -1,0 +1,110 @@
+# Official MCP Registry Server Definition
+# Submit via PR to: https://github.com/modelcontextprotocol/registry
+# Place in: servers/polydev.yaml
+
+name: polydev
+displayName: Polydev - Multi-Model AI Perspectives
+description: |
+  Query GPT 5.2, Claude Opus 4.5, Gemini 3, and Grok 4.1 simultaneously.
+  Get diverse AI perspectives when debugging, making architecture decisions,
+  or reviewing code. Achieved 74.6% on SWE-bench Verified.
+
+vendor: Polydev AI
+repository: https://github.com/polydev-ai/perspectives-mcp
+homepage: https://polydev.ai
+documentationUrl: https://polydev.ai/docs/mcp-integration
+license: MIT
+
+runtime: node
+sourceUrl: https://www.npmjs.com/package/polydev-ai
+
+installation:
+  npm:
+    package: polydev-ai
+    registry: https://registry.npmjs.org
+
+configuration:
+  - name: POLYDEV_USER_TOKEN
+    description: Authentication token for Polydev API
+    required: true
+    secret: true
+
+capabilities:
+  tools: true
+  resources: false
+  prompts: false
+
+tools:
+  - name: get_perspectives
+    description: Query multiple AI models (GPT 5.2, Claude Opus 4.5, Gemini 3, Grok 4.1) simultaneously
+    inputSchema:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to get perspectives on
+        user_token:
+          type: string
+          description: Polydev authentication token
+      required:
+        - prompt
+
+  - name: get_cli_status
+    description: Check status of local CLI tools (Claude Code, Codex CLI, Gemini CLI)
+    inputSchema:
+      type: object
+      properties:
+        provider_id:
+          type: string
+          description: Optional specific provider to check
+
+  - name: force_cli_detection
+    description: Force re-detection of installed local CLI tools
+    inputSchema:
+      type: object
+
+  - name: send_cli_prompt
+    description: Send prompt to local CLI with perspectives fallback
+    inputSchema:
+      type: object
+      properties:
+        provider_id:
+          type: string
+          description: CLI provider ID
+        prompt:
+          type: string
+          description: Prompt to send
+        mode:
+          type: string
+          enum: [args, stdin]
+          default: args
+      required:
+        - provider_id
+        - prompt
+
+categories:
+  - developer-tools
+  - ai-assistants
+  - code-review
+
+tags:
+  - multi-model
+  - ai
+  - debugging
+  - code-review
+  - gpt
+  - claude
+  - gemini
+  - grok
+  - perspectives
+
+supportedClients:
+  - claude-code
+  - cursor
+  - cline
+  - windsurf
+  - codex-cli
+
+metrics:
+  sweBenchVerified: 74.6%
+  costReduction: 62%

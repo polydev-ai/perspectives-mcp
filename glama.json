@@ -1,6 +1,60 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "polydev",
+  "displayName": "Polydev - Multi-Model AI Perspectives",
+  "description": "Query GPT 5.2, Claude Opus 4.5, Gemini 3, and Grok 4.1 simultaneously. Get diverse AI perspectives when debugging, making architecture decisions, or reviewing code. Achieved 74.6% on SWE-bench Verified.",
+  "version": "1.8.61",
   "maintainers": [
     "backspacevenkat"
+  ],
+  "repository": "https://github.com/polydev-ai/perspectives-mcp",
+  "homepage": "https://polydev.ai",
+  "license": "MIT",
+  "categories": [
+    "ai",
+    "developer-tools",
+    "code-review",
+    "debugging"
+  ],
+  "keywords": [
+    "mcp",
+    "multi-model",
+    "ai",
+    "gpt",
+    "claude",
+    "gemini",
+    "grok",
+    "perspectives",
+    "code-review",
+    "debugging"
+  ],
+  "installation": {
+    "npm": "polydev-ai"
+  },
+  "configuration": {
+    "env": {
+      "POLYDEV_USER_TOKEN": {
+        "description": "Your Polydev authentication token. Get one free at https://polydev.ai/dashboard/mcp-tokens",
+        "required": true
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "get_perspectives",
+      "description": "Query multiple AI models (GPT 5.2, Claude Opus 4.5, Gemini 3, Grok 4.1) simultaneously and return their diverse perspectives"
+    },
+    {
+      "name": "get_cli_status",
+      "description": "Check status of local CLI tools (Claude Code, Codex, Gemini)"
+    },
+    {
+      "name": "force_cli_detection",
+      "description": "Force re-detection of installed CLI tools"
+    },
+    {
+      "name": "send_cli_prompt",
+      "description": "Send prompts to local CLIs with perspectives fallback"
+    }
   ]
 }
